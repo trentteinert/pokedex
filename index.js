@@ -1,9 +1,10 @@
-//form input
+//form query input
 const search_term = document.getElementById('search_q');
 //search btn
 const search_btn = document.getElementById('search-btn');
 
-//main function
+//main function - searches api for input in search_term
+// async and await allow for this to happen without reloading the page
 const getPokemonData = async (query) => {
   //fetch the url adding the input to the end of url as the 'query' - makes it lowercase
   const url = `https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`;
@@ -14,7 +15,7 @@ const getPokemonData = async (query) => {
     document.getElementById('show_error').classList.add('show');
     document.getElementById('show_error').classList.remove('hidden');
     return;
-    // else we will use json method search through the api, pick and add the information i want
+    // else we will use json method to search through the api easily, pick then add the information to DOM
   } else {
     document.getElementById('show_error').classList.remove('show');
     document.getElementById('show_error').classList.add('hidden');
@@ -39,6 +40,7 @@ const getPokemonData = async (query) => {
   }
 };
 
+// event listeners for click and 'Enter' key
 search_btn.addEventListener('click', () => getPokemonData(search_term.value));
 
 addEventListener('keypress', function (e) {
